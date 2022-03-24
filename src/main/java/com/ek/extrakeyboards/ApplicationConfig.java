@@ -1,4 +1,4 @@
-package com.extrakeyboards.extrakeyboards;
+package com.ek.extrakeyboards;
 
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -14,7 +14,7 @@ public class ApplicationConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("com.extrakeyboards.extrakeyboards.entity");
+        sessionFactory.setPackagesToScan("com.ek.extrakeyboards.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

@@ -1,4 +1,4 @@
-package com.extrakeyboards.extrakeyboards.entity;
+package com.ek.extrakeyboards.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

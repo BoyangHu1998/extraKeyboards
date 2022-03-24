@@ -1,4 +1,4 @@
-package com.extrakeyboards.extrakeyboards.entity;
+package com.ek.extrakeyboards.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

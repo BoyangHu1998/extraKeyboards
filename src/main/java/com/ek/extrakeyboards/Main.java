@@ -1,4 +1,4 @@
-package com.extrakeyboards.extrakeyboards;
+package com.ek.extrakeyboards;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
