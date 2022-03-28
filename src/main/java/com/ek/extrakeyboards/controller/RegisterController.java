@@ -20,5 +20,6 @@ public class RegisterController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     public void register(@RequestBody User user) {
+        userService.register(user);
     }
 }

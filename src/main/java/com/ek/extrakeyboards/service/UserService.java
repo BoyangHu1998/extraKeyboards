@@ -11,6 +11,8 @@ public class UserService {
     private UserDao userDao;
 
     public void register(User user) {
+        user.setEnabled(true);
+        userDao.register(user);
     }
 
     public User getUser(String uid) {
