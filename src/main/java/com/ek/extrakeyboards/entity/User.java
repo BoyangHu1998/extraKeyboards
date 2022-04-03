@@ -40,7 +40,13 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<JobApplication> jobApplications;
 
-    @ManyToMany
+    // https://www.baeldung.com/hibernate-many-to-many
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
+    @JoinTable(
+            name = "User_Skill",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "skill") }
+    )
     private Set<Skill> skills;
 
     public String getUserId() {

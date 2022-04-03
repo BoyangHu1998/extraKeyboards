@@ -38,11 +38,11 @@ public class UserDao {
         }
     }
 
-    public User getUser(String uid) {
+    public User getUser(String userId) {
         User user = null;
         try (Session session = sessionFactory.openSession()) {
             Criteria criteria = session.createCriteria(User.class);
-            user = (User) criteria.add(Restrictions.eq("user_id", uid)).uniqueResult();
+            user = (User) criteria.add(Restrictions.eq("userId", userId)).uniqueResult();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
