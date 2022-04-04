@@ -1,11 +1,14 @@
 package com.ek.extrakeyboards.dao;
 
 import com.ek.extrakeyboards.entity.Job;
+import com.ek.extrakeyboards.entity.JobApplication;
+import com.ek.extrakeyboards.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,4 +32,31 @@ public class JobDao {
         return null;
     }
 
+    public List<Job> getJobListByCreator(String userId) {
+        List<Job> jobs = null;
+        try {
+            Session session = sessionFactory.openSession();
+            User user = session.get(User.class, userId);
+            jobs = new ArrayList<>(user.getJobs());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return jobs;
+    }
+
+    public List<Job> getJobListByApplicant(String userId) {
+        List<Job> jobs = null;
+        try {
+            Session session = sessionFactory.openSession();
+            User user = session.get(User.class, userId);
+            List<JobApplication> applications = new ArrayList<>(user.getJobApplications());
+            jobs = new ArrayList<>();
+            for (JobApplication application : applications) {
+                jobs.add(application.getJob());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return jobs;
+    }
 }
