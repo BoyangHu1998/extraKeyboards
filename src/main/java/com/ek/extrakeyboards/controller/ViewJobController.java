@@ -22,15 +22,15 @@ public class ViewJobController {
 
     @ResponseBody
     @RequestMapping(value="/viewJobByCreator", method = RequestMethod.GET)
-    public ResponseEntity<List<Job>> viewJobByCreator(@RequestParam(value = "user_id") String userId) {
-        List<Job> jobs = viewJobService.getJobCreated(userId);
+    public ResponseEntity<List<Job>> viewJobByCreator() {
+        List<Job> jobs = viewJobService.getJobCreated();
         return new ResponseEntity<List<Job>>(jobs, HttpStatus.OK);
     }
 
     @ResponseBody
     @RequestMapping(value="/viewJobByApplicant", method = RequestMethod.GET)
-    public ResponseEntity<List<Job>> viewJobByApplicant(@RequestParam(value = "user_id") String userId) {
-        List<Job> jobs = viewJobService.getJobApplied(userId);
+    public ResponseEntity<List<Job>> viewJobByApplicant() {
+        List<Job> jobs = viewJobService.getJobApplied();
         return new ResponseEntity<List<Job>>(jobs, HttpStatus.OK);
     }
 }
