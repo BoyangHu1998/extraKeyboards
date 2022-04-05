@@ -38,4 +38,16 @@ public class JobApplicationController {
     public JobApplication applyApplication(@RequestParam(value = "job_id") String jobId) {
         return applicationService.applyApplication(jobId);
     }
+
+    @RequestMapping(value="/approveApplication", method = RequestMethod.GET)
+    @ResponseBody
+    public JobApplication approveApplication(@RequestParam(value = "application_id") String applicationId) {
+        return applicationService.approveApplication(applicationId);
+    }
+
+    @RequestMapping(value="/declineApplication", method = RequestMethod.GET)
+    @ResponseBody
+    public JobApplication declineApplication(@RequestParam(value = "application_id") String applicationId) {
+        return applicationService.declineApplication(applicationId);
+    }
 }

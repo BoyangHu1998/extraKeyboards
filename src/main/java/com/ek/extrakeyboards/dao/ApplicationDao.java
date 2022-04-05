@@ -73,4 +73,15 @@ public class ApplicationDao {
             }
         }
     }
+
+    public JobApplication getApplicationById(String applicationId) {
+        JobApplication application = null;
+        try {
+            Session session = sessionFactory.openSession();
+            application = session.get(JobApplication.class, applicationId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return application;
+    }
 }

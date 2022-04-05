@@ -52,4 +52,36 @@ public class ApplicationService {
 
         return jobApplication;
     }
+
+    public JobApplication approveApplication(String applicationId) {
+        final JobApplication jobApplication = this.getApplicationById(applicationId);
+
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String username = loggedInUser.getName();
+        User user = userService.getUser(username);
+
+        if (user != null && jobApplication != null && user.getUserId() == jobApplication.getUser().getUserId()) {
+            jobApplication.setStatus(ApplicationStatus.ACCEPTED);
+            applicationDao.saveApplication(jobApplication);
+        }
+        return jobApplication;
+    }
+
+    public JobApplication declineApplication(String applicationId) {
+        final JobApplication jobApplication = this.getApplicationById(applicationId);
+
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String username = loggedInUser.getName();
+        User user = userService.getUser(username);
+
+        if (user != null && jobApplication != null && user.getUserId() == jobApplication.getUser().getUserId()) {
+            jobApplication.setStatus(ApplicationStatus.DECLINED);
+            applicationDao.saveApplication(jobApplication);
+        }
+        return jobApplication;
+    }
+
+    private JobApplication getApplicationById(String applicationId) {
+        return applicationDao.getApplicationById(applicationId);
+    }
 }
