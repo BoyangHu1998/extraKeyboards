@@ -1,6 +1,7 @@
 package com.ek.extrakeyboards.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,7 +19,8 @@ public class JobApplication implements Serializable {
 
     private Date updateAt;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ApplicationStatus status;
 
     @ManyToOne
     @JsonIgnore
@@ -44,11 +46,11 @@ public class JobApplication implements Serializable {
         this.updateAt = updateAt;
     }
 
-    public String getStatus() {
+    public ApplicationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ApplicationStatus status) {
         this.status = status;
     }
 

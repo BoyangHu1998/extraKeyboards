@@ -55,4 +55,22 @@ public class ApplicationDao {
         }
         return applications;
     }
+
+    public void saveApplication(JobApplication jobApplication) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            session.save(jobApplication);
+            session.getTransaction().commit();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            if (session != null) session.getTransaction().rollback();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 }

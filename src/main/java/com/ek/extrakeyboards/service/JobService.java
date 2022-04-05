@@ -16,4 +16,8 @@ public class JobService {
         List<Job> jobs = jobDao.getJobListByKeyword(keyword);
         return jobs;
     }
+
+    public Job getJob(String job_id) {
+        return jobDao.getJob(job_id);
+    }
 }

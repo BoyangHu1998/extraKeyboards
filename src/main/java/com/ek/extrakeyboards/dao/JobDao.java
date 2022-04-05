@@ -59,4 +59,23 @@ public class JobDao {
         }
         return jobs;
     }
+
+    public Job getJob(String job_id) {
+        Session session = null;
+        Job job = null;
+        try {
+            session = sessionFactory.openSession();
+            job = session.get(Job.class, job_id);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            if (session != null) {
+                session.getTransaction().rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return job;
+    }
 }
